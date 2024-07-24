@@ -40,7 +40,7 @@ class activity_perfiles : AppCompatActivity() {
         rcvPacientes.layoutManager = LinearLayoutManager(this)
 
         fun obtenerPacientes(): List<Pacientes> {
-            val listaPacientes = mutableListOf<Pacientes>()
+            val listaP = mutableListOf<Pacientes>()
             val objConexion = ClaseConexion().cadenaConexion()
             objConexion?.use { conn ->
                 val statement = conn.createStatement()
@@ -50,9 +50,9 @@ class activity_perfiles : AppCompatActivity() {
                     val nombres = resultSet.getString("nombres")
                     val apellidos = resultSet.getString("apellidos")
                     val edad = resultSet.getInt("edad")
-                    val enfermaedad = resultSet.getString("enfermedad")
-                    val numero_habitacion = resultSet.getInt("num_habitacion")
-                    val numero_cama = resultSet.getInt("num_cama")
+                    val enfermedad = resultSet.getString("enfermedad")
+                    val num_habitacion = resultSet.getInt("num_habitacion")
+                    val num_cama = resultSet.getInt("num_cama")
                     val medicamento = resultSet.getString("medicamento")
                     val fecha_ingreso = resultSet.getDate("fecha_ingreso")
                     val hora_aplicacion = resultSet.getTime("hora_aplicacion")
@@ -61,19 +61,19 @@ class activity_perfiles : AppCompatActivity() {
                         nombres,
                         apellidos,
                         edad,
-                        enfermaedad,
-                        numero_habitacion,
-                        numero_cama,
+                        enfermedad,
+                        num_habitacion,
+                        num_cama,
                         medicamento,
                         hora_aplicacion.toString(),
                         fecha_ingreso.toString()
                     )
 
-                    listaPacientes.add(valoresJuntos)
+                    listaP.add(valoresJuntos)
                 }
             }
 
-            return listaPacientes
+            return listaP
 
         }
 

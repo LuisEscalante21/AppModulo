@@ -25,8 +25,8 @@ class activity_splash_screen : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.Main) {
             delay(3000)
 
-            val pantallaBienvenida = Intent(this@activity_splash_screen, MainActivity::class.java)
-            startActivity(pantallaBienvenida)
+            val pantallaCarga = Intent(this@activity_splash_screen, MainActivity::class.java)
+            startActivity(pantallaCarga)
             finish()
         }
     }

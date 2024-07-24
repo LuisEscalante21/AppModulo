@@ -32,8 +32,8 @@ class activity_Inicio : AppCompatActivity() {
 
         val btnHome = findViewById<ImageView>(R.id.btnPerfilPaciente)
         btnHome.setOnClickListener {
-            val pantallaListadoPacientes = Intent(this, activity_perfiles::class.java)
-            startActivity(pantallaListadoPacientes)
+            val pantallaPerfiles = Intent(this, activity_perfiles::class.java)
+            startActivity(pantallaPerfiles)
             overridePendingTransition(0, 0)
         }
 
@@ -84,7 +84,7 @@ class activity_Inicio : AppCompatActivity() {
             if(nombre.isEmpty() || apellido.isEmpty() || edad.isEmpty() || enfermedad.isEmpty() || habitacion.isEmpty() || cama.isEmpty() || medicamentos.isEmpty() || ingreso.isEmpty() || hora.isEmpty()){
                 Toast.makeText(
                     this,
-                    "Error, para enviar el registro debes llenar todas las casillas.",
+                    "Complete todos los campos antes de continuar",
                     Toast.LENGTH_SHORT
                 ).show()
             }else {
@@ -106,9 +106,6 @@ class activity_Inicio : AppCompatActivity() {
                     withContext(Dispatchers.Main) {
                         AlertDialog.Builder(this@activity_Inicio)
                             .setTitle("Registro de paciente exitoso!")
-                            .setMessage("Ahora debes asignar un medicamento!")
-                            .setPositiveButton("Aceptar", null)
-                            .show()
                         txtNombrePacientes.setText("")
                         txtApellidosPacientes.setText("")
                         txtEdadPacientes.setText("")

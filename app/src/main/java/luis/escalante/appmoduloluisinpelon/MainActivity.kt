@@ -62,7 +62,7 @@ class MainActivity: AppCompatActivity() {
                     val objConexion = ClaseConexion().cadenaConexion()
 
                     val comprobarUsuario =
-                        objConexion?.prepareStatement("SELECT * FROM Usuarios_Enfermeros WHERE correo_usuario = ? AND contrasena = ?")!!
+                        objConexion?.prepareStatement("SELECT * FROM Usuarios WHERE correo = ? AND contrasena = ?")!!
                     comprobarUsuario.setString(1, txtCorreo.text.toString())
                     comprobarUsuario.setString(2, txtContrasena.text.toString())
                     val resultado = comprobarUsuario.executeQuery()

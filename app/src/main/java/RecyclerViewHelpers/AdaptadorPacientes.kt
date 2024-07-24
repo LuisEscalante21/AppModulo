@@ -230,13 +230,13 @@ class AdaptadorPacientes(var Datos: List<Pacientes>): RecyclerView.Adapter<ViewH
             builder.setTitle("Actualizar Paciente")
             builder.setView(dialogView)
             builder.setPositiveButton("Guardar"){dialog, _ ->
-                val nuevaEdad = editEdad.text.toString().toIntOrNull() ?: item.edad
-                val nuevaEnfermedad = editEnfermedad.text.toString()
-                val nuevaHabitacion = editHabitacion.text.toString().toIntOrNull() ?: item.num_habitacion
-                val nuevaCama = editCama.text.toString().toIntOrNull() ?: item.num_cama
-                val nuevoIngreso = editIngreso.text.toString()
+                val newEdad = editEdad.text.toString().toIntOrNull() ?: item.edad
+                val newEnfermedad = editEnfermedad.text.toString()
+                val newHabitacion = editHabitacion.text.toString().toIntOrNull() ?: item.num_habitacion
+                val newCama = editCama.text.toString().toIntOrNull() ?: item.num_cama
+                val newIngreso = editIngreso.text.toString()
 
-                updateData(context, nuevaEdad, nuevaEnfermedad, nuevaHabitacion, nuevaCama, nuevoIngreso, item.id_paciente)
+                updateData(context, newEdad, newEnfermedad, newHabitacion, newCama, newIngreso, item.id_paciente)
 
 
                 dialog.dismiss()
@@ -293,7 +293,7 @@ class AdaptadorPacientes(var Datos: List<Pacientes>): RecyclerView.Adapter<ViewH
         } catch (e: Exception){
             Log.e("AdaptadorPacientes", "El dialog es el error", e)
                 withContext(Dispatchers.Main){
-                    Toast.makeText(context, "asignar un medicamento para mostrar los datos", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "asigna todos los campos", Toast.LENGTH_LONG).show()
                 }
         }
     }

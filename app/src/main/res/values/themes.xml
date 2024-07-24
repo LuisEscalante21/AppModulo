@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.AppModuloLuisinPelon" parent="Base.Theme.AppModuloLuisinPelon" />
+    <style name="Theme.AppModuloLuisinPelon.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.AppModuloLuisinPelon.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.AppModuloLuisinPelon.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

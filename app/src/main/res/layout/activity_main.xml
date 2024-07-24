@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/raleway_extrabold_italic"
         android:text="Nombre"
@@ -100,7 +100,12 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#2A439D"
+        android:fontFamily="@font/raleway_semibold_italic"
         android:text="iniciar sesion"
-        tools:layout_editor_absoluteX="278dp"
-        tools:layout_editor_absoluteY="556dp" />
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>

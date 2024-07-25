@@ -30,6 +30,7 @@ class AdaptadorPacientes(var Datos: List<Pacientes>): RecyclerView.Adapter<ViewH
         new_enfermadad: String,
         new_num_habitacion: Int,
         new_num_cama: Int,
+        new_medicamentos: String,
         new_fecha_ingreso: String,
         new_hora_aplicacion: String
     ) {
@@ -41,6 +42,7 @@ class AdaptadorPacientes(var Datos: List<Pacientes>): RecyclerView.Adapter<ViewH
         Datos[index].enfermedad = new_enfermadad
         Datos[index].num_habitacion = new_num_habitacion
         Datos[index].num_cama = new_num_cama
+        Datos[index].medicamento = new_medicamentos
         Datos[index].fecha_ingreso = new_fecha_ingreso
         Datos[index].hora_aplicacion = new_hora_aplicacion
         notifyItemChanged(index)
@@ -109,22 +111,23 @@ class AdaptadorPacientes(var Datos: List<Pacientes>): RecyclerView.Adapter<ViewH
         }
     }
 
-    fun updateData(context: Context, newNombres: String, newApellidos: String, newEdad: Int, newEnfermedad: String, newnum_habitacion: Int, newnum_cama: Int,  newfecha_ingreso: String,newhora_aplicacion: String, id_paciente: Int) {
+    fun updateData(context: Context, newNombres: String, newApellidos: String, newEdad: Int, newEnfermedad: String, newnum_habitacion: Int, newnum_cama: Int, newmedicamentos: String,  newfecha_ingreso: String,newhora_aplicacion: String, id_paciente: Int) {
         GlobalScope.launch(Dispatchers.IO) {
             val objConexion = ClaseConexion().cadenaConexion()
             if(objConexion != null) {
                 try {
                     val actualizarPaciente =
-                        objConexion.prepareStatement("update Pacientes set nombres =?, apellidos = ?, edad = ?, enfermedad = ?, num_habitacion = ?, num_cama = ?, fecha_ingreso = ?, hora_aplicacion = ? where id_paciente = ?")!!
+                        objConexion.prepareStatement("update Pacientes set nombres =?, apellidos = ?, edad = ?, enfermedad = ?, num_habitacion = ?, num_cama = ?, medicamentos = ?, fecha_ingreso = ?, hora_aplicacion = ? where id_paciente = ?")!!
                     actualizarPaciente.setString(1, newNombres)
                     actualizarPaciente.setString(2, newApellidos)
                     actualizarPaciente.setInt(3, newEdad)
                     actualizarPaciente.setString(4, newEnfermedad)
                     actualizarPaciente.setInt(5, newnum_habitacion)
                     actualizarPaciente.setInt(6, newnum_cama)
-                    actualizarPaciente.setString(7, newfecha_ingreso)
-                    actualizarPaciente.setString(8, newhora_aplicacion)
-                    actualizarPaciente.setInt(9, id_paciente)
+                    actualizarPaciente.setString(7, newmedicamentos)
+                    actualizarPaciente.setString(8, newfecha_ingreso)
+                    actualizarPaciente.setString(9, newhora_aplicacion)
+                    actualizarPaciente.setInt(10, id_paciente)
                     actualizarPaciente.executeUpdate()
 
                     withContext(Dispatchers.Main) {
@@ -136,6 +139,7 @@ class AdaptadorPacientes(var Datos: List<Pacientes>): RecyclerView.Adapter<ViewH
                             newEnfermedad,
                             newnum_habitacion,
                             newnum_cama,
+                            newmedicamentos,
                             newfecha_ingreso,
                             newhora_aplicacion
                         )

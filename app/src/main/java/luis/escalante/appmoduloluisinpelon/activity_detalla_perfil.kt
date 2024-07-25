@@ -1,11 +1,16 @@
 package luis.escalante.appmoduloluisinpelon
 
+import RecyclerViewHelpers.AdaptadorPacientes
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class activity_detalla_perfil : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +24,7 @@ class activity_detalla_perfil : AppCompatActivity() {
         }
 
         val nombresR = intent.getStringExtra("nombres")
-        val apellidosR = intent.getStringExtra("apellidosapellidos")
+        val apellidosR = intent.getStringExtra("apellidos")
         val edadR = intent.getIntExtra("edad",0)
         val enfermedadR = intent.getStringExtra("enfermedad")
         val num_habitacionR = intent.getIntExtra("num_habitacion",0)
@@ -49,5 +54,9 @@ class activity_detalla_perfil : AppCompatActivity() {
         txtMedicamento.text = medicamentoR
         txtFechaIngreso.text = fecha_ingresoR
         txtHoraAplicacion.text = hora_aplicacionR
+
+
+
+
     }
 }

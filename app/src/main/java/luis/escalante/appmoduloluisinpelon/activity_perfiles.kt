@@ -42,7 +42,7 @@ class activity_perfiles : AppCompatActivity() {
         fun obtenerPacientes(): List<Pacientes> {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("select * from pacientes")!!
+            val resulSet = statement?.executeQuery("SELECT * FROM Pacientes")!!
             val listaP = mutableListOf<Pacientes>()
             while (resulSet.next()) {
                 val id_paciente = resulSet.getInt("id_paciente")
@@ -64,13 +64,21 @@ class activity_perfiles : AppCompatActivity() {
                     num_habitacion,
                     num_cama,
                     medicamento,
-                    hora_aplicacion,
-                    fecha_ingreso
+                    fecha_ingreso,
+                    hora_aplicacion
                 )
                 listaP.add(valoresJuntos)
             }
             return listaP
         }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val nuevosPacientes = obtenerPacientes()
+            withContext(Dispatchers.IO){
+                (rcvPacientes.adapter as? AdaptadorPacientes)?.updateLista(nuevosPacientes)
+            }
+        }
+
         CoroutineScope(Dispatchers.IO).launch {
             val pacientesBD = obtenerPacientes()
             withContext(Dispatchers.Main) {

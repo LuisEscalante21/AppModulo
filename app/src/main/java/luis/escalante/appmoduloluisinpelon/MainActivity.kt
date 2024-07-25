@@ -55,14 +55,14 @@ class MainActivity: AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                val pantallaListadoPacientes = Intent(this, activity_perfiles::class.java)
+                val pantallaListadoPacientes = Intent(this, activity_Inicio::class.java)
 
                 CoroutineScope(Dispatchers.IO).launch {
 
                     val objConexion = ClaseConexion().cadenaConexion()
 
                     val comprobarUsuario =
-                        objConexion?.prepareStatement("SELECT * FROM Usuarios WHERE correo = ? AND contrasena = ?")!!
+                        objConexion?.prepareStatement("SELECT * FROM Usuarios WHERE correo = ? AND contrasena    = ?")!!
                     comprobarUsuario.setString(1, txtCorreo.text.toString())
                     comprobarUsuario.setString(2, txtContrasena.text.toString())
                     val resultado = comprobarUsuario.executeQuery()

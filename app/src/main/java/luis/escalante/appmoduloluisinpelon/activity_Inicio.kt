@@ -91,7 +91,7 @@ class activity_Inicio : AppCompatActivity() {
                 CoroutineScope(Dispatchers.IO).launch {
                     val objConexion = ClaseConexion().cadenaConexion()
                     val addPaciente =
-                        objConexion?.prepareStatement("INSERT INTO Pacientes(nombres, apellidos, edad, enfermedad, num_habitacion, num_cama, medicamentos, fecha_ingreso, hora_aplicacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")!!
+                        objConexion?.prepareStatement("INSERT INTO Pacientes (nombres, apellidos, edad, enfermedad, num_habitacion, num_cama, medicamentos, fecha_ingreso, hora_aplicacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")!!
                     addPaciente.setString(1, txtNombrePacientes.text.toString())
                     addPaciente.setString(2, txtApellidosPacientes.text.toString())
                     addPaciente.setInt(3, txtEdadPacientes.text.toString().toInt())
@@ -101,7 +101,7 @@ class activity_Inicio : AppCompatActivity() {
                     addPaciente.setString(7, txtMedicamentos.text.toString())
                     addPaciente.setString(8, txtFechaIngreso.text.toString())
                     addPaciente.setString(9, txtHoraAplicacion.text.toString())
-                    addPaciente.executeQuery()
+                    addPaciente.executeUpdate()
 
                     withContext(Dispatchers.Main) {
                         AlertDialog.Builder(this@activity_Inicio)

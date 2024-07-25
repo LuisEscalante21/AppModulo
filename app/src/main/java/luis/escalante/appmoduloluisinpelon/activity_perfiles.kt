@@ -40,57 +40,44 @@ class activity_perfiles : AppCompatActivity() {
         rcvPacientes.layoutManager = LinearLayoutManager(this)
 
         fun obtenerPacientes(): List<Pacientes> {
-            val listaP = mutableListOf<Pacientes>()
             val objConexion = ClaseConexion().cadenaConexion()
-            objConexion?.use { conn ->
-                val statement = conn.createStatement()
-                val resultSet = statement?.executeQuery("SELECT * FROM Pacientes")!!
-                while (resultSet.next()) {
-                    val id_paciente = resultSet.getInt("id_paciente")
-                    val nombres = resultSet.getString("nombres")
-                    val apellidos = resultSet.getString("apellidos")
-                    val edad = resultSet.getInt("edad")
-                    val enfermedad = resultSet.getString("enfermedad")
-                    val num_habitacion = resultSet.getInt("num_habitacion")
-                    val num_cama = resultSet.getInt("num_cama")
-                    val medicamento = resultSet.getString("medicamento")
-                    val fecha_ingreso = resultSet.getDate("fecha_ingreso")
-                    val hora_aplicacion = resultSet.getTime("hora_aplicacion")
-                    val valoresJuntos = Pacientes(
-                        id_paciente,
-                        nombres,
-                        apellidos,
-                        edad,
-                        enfermedad,
-                        num_habitacion,
-                        num_cama,
-                        medicamento,
-                        hora_aplicacion.toString(),
-                        fecha_ingreso.toString()
-                    )
-
-                    listaP.add(valoresJuntos)
-                }
+            val statement = objConexion?.createStatement()
+            val resulSet = statement?.executeQuery("select * from pacientes")!!
+            val listaP = mutableListOf<Pacientes>()
+            while (resulSet.next()) {
+                val id_paciente = resulSet.getInt("id_paciente")
+                val nombres = resulSet.getString("nombres")
+                val apellidos = resulSet.getString("apellidos")
+                val edad = resulSet.getInt("edad")
+                val enfermedad = resulSet.getString("enfermedad")
+                val num_habitacion = resulSet.getInt("num_habitacion")
+                val num_cama = resulSet.getInt("num_cama")
+                val medicamento = resulSet.getString("medicamentos")
+                val fecha_ingreso = resulSet.getString("fecha_ingreso")
+                val hora_aplicacion = resulSet.getString("hora_aplicacion")
+                val valoresJuntos = Pacientes(
+                    id_paciente,
+                    nombres,
+                    apellidos,
+                    edad,
+                    enfermedad,
+                    num_habitacion,
+                    num_cama,
+                    medicamento,
+                    hora_aplicacion,
+                    fecha_ingreso
+                )
+                listaP.add(valoresJuntos)
             }
-
             return listaP
-
         }
-
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val newsPacientes = obtenerPacientes()
-            withContext(Dispatchers.IO){
-                (rcvPacientes.adapter as? AdaptadorPacientes)?.updateLista(newsPacientes)
-            }
-        }
-
         CoroutineScope(Dispatchers.IO).launch {
             val pacientesBD = obtenerPacientes()
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 val adapter = AdaptadorPacientes(pacientesBD)
                 rcvPacientes.adapter = adapter
             }
         }
     }
 }
+
